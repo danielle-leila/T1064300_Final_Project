@@ -1,0 +1,133 @@
+
+{% load static %}
+
+/** Header **/
+
+.header {
+    background-color: #FFD700;
+    -moz-border-radius-bottomright: 30px;
+    -moz-border-radius-bottomleft: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    margin-bottom: 30px;
+    border: 1px solid #f1cb00;
+    color: #FFFFFF;
+    text-shadow: 0px 2px 3px #f1cb00;
+}
+
+.header h1 {
+    color: #FFFFFF;
+    clear: none;
+    padding: 25px;
+}
+
+.header em {
+  font-size: 70%;
+}
+
+.header h3 {
+     padding: 25px;
+     color: #FFFFFF;
+}
+
+/** Sign In **/
+
+.openid-btn {
+    margin-top: 20px;
+    width: 150px;
+    height: 22px;
+    background-image: url("../img/openid_signin.png");
+    background-position: 0 0;
+}
+
+.openid-btn:hover {
+    background-position: 0 -24px;
+}
+
+.openid-btn:active {
+    background-position: 0 -48px;
+}
+
+/** Create Page **/
+
+.thumb {
+    float: left;
+    margin: 10px;
+}
+
+.step {
+    padding: 10px;
+    background-color: #FFD700;
+    clear: both;
+}
+
+.group {
+    padding: 10px;
+    float: left;
+}
+
+
+/** Templates **/
+
+.outline {
+    border: 1px solid black;
+}
+
+.mono, .duo, .vertical_half, .horiz_half, .one_quarter {
+    float: left;
+}
+
+.mono {
+    width: 400px;
+    height: 400px;
+}
+
+.duo {
+    width: 800px;
+    height: 400px;
+}
+
+.monoS {
+    position: relative;
+    top: 50px;
+    left: 50px;
+    width: 300px;
+    height: 300px;
+}
+
+.vertical_half {
+    width: 200px;
+    height: 400px;
+}
+
+.horiz_half {
+    width: 400px;
+    height: 200px;
+}
+
+.one_quarter {
+    width: 200px;
+    height: 200px;
+}
+
+
+/** Footer **/
+
+.footer {
+    background-color: #FFD700;
+    color: #FFFFFF;
+    text-shadow: 0px 2px 3px #f1cb00;
+    padding: 25px;
+    -moz-border-radius-topright: 30px;
+    -moz-border-radius-topleft: 30px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border: 1px solid #f1cb00;
+}
+
+.footer p {
+    text-align: center;
+}
+
+
+

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+	<div class="row">
+		
+		{% if is_auth %}
+
+			<!-- Redirect to user's albums (albums.html) -->
+			<p>Congratulations! You are logged in</p>
+			
+			{% else %}
+				<div class="span6">
+					<div class="hero-unit">
+  						<h1>Welcome</h1>
+  						<p>to our easy-peasy online photo album generator. Put your feet up, relax, and let us do the rest.</p>
+					</div>
+				</div>
+				<div class="span6">
+					<form class="well form-inline">
+						<legend>Already a member?</legend>
+					  <input type="text" class="input-small" placeholder="Username">
+					  <input type="password" class="input-small" placeholder="Password">
+					  <button type="submit" class="btn">Sign in</button>
+					<!-- Needs a correct link to OpenID login -->
+						<a href="login.html">
+							<img class="openid-btn" src="{% get_static_prefix %}img/img_trans.png" alt="OpenID" />
+						</a>
+					</form>
+					
+					<form class="well form-horizontal">
+						<fieldset>
+						    <legend>Create a CoffeeTable account</legend>
+						    <div class="control-group">
+						      <label class="control-label" for="new-username">Choose a username</label>
+						      <div class="controls">
+						        <input type="text" class="input-small" id="new-username" placeholder="Username">
+						        <!--<p class="help-block">Supporting help text</p>-->
+						      </div>
+						    </div>
+							<div class="control-group">
+						      <label class="control-label" for="new-password">Choose a password</label>
+						      <div class="controls">
+						        <input type="password" class="input-small" id="new-password" placeholder="New Password">
+						      </div>
+						    </div>
+						
+							<div class="control-group">
+						      <label class="control-label" for="password-again">Repeat your password</label>
+						      <div class="controls">
+						        <input type="password" class="input-small" id="password-again" placeholder="... again">
+						      </div>
+						    </div>
+						
+						  	<div class="control-group">
+					  			<button type="submit" class="btn">Sign up</button>
+							</div>
+						</fieldset>
+					</form>
+					
+					<!-- Insert login section here -->
+				</div>
+		{% endif %}
+		
+	</div>
+{% endblock %}
+
+
+

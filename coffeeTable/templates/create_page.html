@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+	
+	
+	
+	
+	<div>
+		<h1>Create a page</h1>
+		
+			<!-- Template selection -->
+			<div class="step">
+		
+			<h3>1. Choose a template</h3>
+				
+			<div class="group">
+		
+				<p>Front or back cover:</p>
+		
+			<a href="/create_album/{{ p.number }}/monoB1/">
+				<img class="thumb" src="{% get_static_prefix %}img/monoB1.png" />
+			</a>
+			
+			<a href="/create_album/{{ p.number }}/monoS1/">
+				<img class="thumb" src="{% get_static_prefix %}img/monoS1.png" />
+			</a>
+			
+			<a href="/create_album/{{ p.number }}/mono3/">
+				<img class="thumb" src="{% get_static_prefix %}img/mono3.png" />
+			</a>
+			
+			<a href="/create_album/{{ p.number }}/mono4/">
+				<img class="thumb" src="{% get_static_prefix %}img/mono4.png" />
+			</a>
+			
+			</div>
+			
+			<div class="group">
+				<p>Inside page:</p>
+			
+			<a href="/create_album/{{ p.number }}/duo2/">
+				<img class="thumb" src="{% get_static_prefix %}img/duo2.png" />
+			</a>
+			
+			<a href="/create_album/{{ p.number }}/duo1/">
+				<img class="thumb" src="{% get_static_prefix %}img/duo1.png" />
+			</a>
+			
+			<a href="/create_album/{{ p.number }}/duoR3/">
+				<img class="thumb" src="{% get_static_prefix %}img/duoR3.png" />
+			</a>
+			
+			<a href="/create_album/{{ p.number }}/duoL3/">
+				<img class="thumb" src="{% get_static_prefix %}img/duoL3.png" />
+			</a>
+			
+			<a href="/create_album/{{ p.number }}/duoR5">
+				<img class="thumb" src="{% get_static_prefix %}img/duoR5.png" />
+			</a>
+			
+			<a href="/create_album/{{ p.number }}/duoL5">
+				<img class="thumb" src="{% get_static_prefix %}img/duoL5.png" />
+			</a>
+			
+			</div>
+			
+		</div>
+		
+		<!-- Photo selection -->
+		<div class="step">
+		
+			<h3>2. Pick your photos</h3>
+		
+		<form class="form-inline" action="/create_album/{{ p.number }}/{{ p.template }}/" method="post">
+		{% csrf_token %}
+		<label for="image_url">Image URL:</label>
+		<input type="text" class="input-large" name="image_url" id="image_url" value="www.example.com/image.jpg" /></br>
+		{% if j == 2 %}
+			<input type="radio" name="image_number" id="image_number" value="1" CHECKED />1</br>
+			<input type="radio" name="image_number" id="image_number" value="2" />2</br>
+			{% if j == 3 %}
+				<input type="radio" name="image_number" id="image_number" value="3" />3</br>
+				{% if j == 4 %}
+					<input type="radio" name="image_number" id="image_number" value="4" />4</br>
+					{% if j == 5 %}
+						<input type="radio" name="image_number" id="image_number" value="5" />5</br>
+					{% endif %}
+				{% endif %}
+			{% endif %}
+		{% else %}
+			<input type="hidden" name="image_number" value="1" />
+		{% endif %}
+		
+		<input type="submit" value="Enter" />
+		</form>
+		
+		</div>
+		
+		<!-- Preview window -->
+		<div class="step">
+		
+			{% block template %}
+			{% endblock %}
+		
+			<p>Page number: {{ p.number }}</p>
+			
+			{% if p.number != 1 %}
+				<a href="/create_album/{{ p.number|add:"-1" }}/"><p>Go back</p></a>
+			{% endif %}
+		
+		</div>
+			
+		<div class="step">
+			
+			<a href="/create_album/{{ p.number|add:"1" }}/duo2"><h3>3. Add another page</h3></a>
+
+	</div>
+
+{% endblock %}
+

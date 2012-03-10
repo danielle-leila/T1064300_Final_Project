@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+   <title>CoffeeTable *enlightened*</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% get_static_prefix %}css/coffeeTable.css" type="text/css" />
+	<link rel="stylesheet" href="{% get_static_prefix %}css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="{% get_static_prefix %}css/bootstrap-responsive.css" type="text/css" />
+	<link rel="stylesheet" href="{% get_static_prefix %}css/reset.css" type="text/css" />
+	<meta name="Keywords" content="photo album, coffee table, photo book" />
+</head>
+<body>
+	
+	<!-- Main container -->
+	<div class="container">
+		
+		<!-- Header -->
+		{% block header %}
+			<div class="header">
+				<div class="row">
+					<div class="span12">
+						<div class="row">
+							<div class="span8">
+								<h1>CoffeeTable <em>*enlightened*</em></h1>
+							</div>
+							<div class="span4">
+								<h3 class="pull-right">
+									{% if is_auth %}
+									
+							<!-- Needs a variable here -->		
+										Hello Danielle
+									{% endif %}
+								</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ul class="nav-tabs">
+				<li><a href="/">Home</a></li>
+				<li><a href="/create_album/">Create album</a></li>
+			</ul>
+		{% endblock %}
+		
+		<!-- Content -->
+		{% block content %}
+		{% endblock %}
+	
+		<!-- Footer -->
+		{% block footer %}
+			<div class="row">
+				<div class="span12">
+					<div class="footer">
+						<p>&#169; Aalto University 2012</p>
+					</div>
+				</div>
+			</div> <!-- /footer -->
+		{% endblock %}
+	
+	</div> <!-- /container -->
+
+</body>
+</html>

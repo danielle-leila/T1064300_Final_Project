@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+	<div>
+
+		{% if album_list %}
+		    <ul>
+		    {% for album in album_list %}
+		        <li><a href="/albums/{{ album.id }}/">{{ album.title }}</a></li>
+					<li><a href="/albums/{{ album.id }}/">{{ album.description }}</a></li>
+		    {% endfor %}
+		    </ul>
+		{% else %}
+		    <p>No albums are available.</p>
+		{% endif %}
+		
+
+
+
+
+	</div>
+{% endblock %}
+

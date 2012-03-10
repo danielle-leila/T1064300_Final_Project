@@ -1,0 +1,35 @@
+/*** CSS Stylesheet ***/
+
+/* Stylesheet media: Screen
+   Developed for: F.R.O.G. 
+   Created by: Danielle Pichlis 
+   Last modified on: 28 Aug 2011 */
+
+
+/*** CSS Reset Stylesheet***/
+
+html, body, div,
+h1, h2, h3, h4, h5, h6, p, a,
+img, ol, ul, li, pre, code,
+table, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ul {
+	list-style: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*** end of CSS reset***/
+
+/* Adapted from: (Meyer & Meyer 2010) */
