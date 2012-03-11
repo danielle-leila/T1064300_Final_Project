@@ -1,36 +1,51 @@
 {% extends "create_page.html" %}
 {% load static %}
 {% block template %}
-	
-	<div>
-		
+
 		<div class="mono">
 			
-			{% if i_list.0 %}
-				<img class="vertical_half" src="{{ i_list.0.uri }}" />
+			<div class="vertical_half">
+
+				<h3 class="img_no">1</h3>
+					
+				{% if i_list.0 %}
+					<img class="vertical_half" src="{{ i_list.0.uri }}" />
 				
-			{% else %}
-				<img class="vertical_half" src="{% get_static_prefix %}img/empty.png" />
+				{% else %}
+					<img class="vertical_half" src="{% get_static_prefix %}img/empty.png" />
 			
-			{% endif %}
-			
-			{% if i_list.1 %}
-				<img class="one_quarter" src="{{ i_list.1.uri }}" />
+				{% endif %}
 				
-			{% else %}
-				<img class="one_quarter" src="{% get_static_prefix %}img/empty.png" />
+			</div>
 			
-			{% endif %}
-			
-			{% if i_list.2 %}
-				<img class="one_quarter" src="{{ i_list.2.uri }}" />
+			<div class="one_quarter">
 				
-			{% else %}
-				<img class="one_quarter" src="{% get_static_prefix %}img/empty.png" />
+				<h3 class="img_no">2</h3>
 			
-			{% endif %}
+				{% if i_list.1 %}
+					<img class="one_quarter" src="{{ i_list.1.uri }}" />
+				
+				{% else %}
+					<img class="one_quarter" src="{% get_static_prefix %}img/empty.png" />
+			
+				{% endif %}
+				
+			</div>
+			
+			<div class="one_quarter">
+				
+				<h3 class="img_no">3</h3>
+			
+				{% if i_list.2 %}
+					<img class="one_quarter" src="{{ i_list.2.uri }}" />
+				
+				{% else %}
+					<img class="one_quarter" src="{% get_static_prefix %}img/empty.png" />
+			
+				{% endif %}
+				
+			</div>
 			
 		</div>
 
-	</div>
 {% endblock %}

@@ -7,14 +7,14 @@
 	
 	
 	<div>
-		<h1>Create a page</h1>
+		<h1>Create a page <span class="pull-right">Page {{ p.number }}.</span></h1>
 		
 			<!-- Template selection -->
 			<div class="step">
 		
 			<h3>1. Choose a template</h3>
 				
-			<div class="group">
+				<div class="group">
 		
 				<p>Front or back cover:</p>
 		
@@ -34,9 +34,9 @@
 				<img class="thumb" src="{% get_static_prefix %}img/mono4.png" />
 			</a>
 			
-			</div>
+				</div>
 			
-			<div class="group">
+				<div class="group">
 				<p>Inside page:</p>
 			
 			<a href="/create_album/{{ p.number }}/duo2/">
@@ -63,14 +63,16 @@
 				<img class="thumb" src="{% get_static_prefix %}img/duoL5.png" />
 			</a>
 			
-			</div>
+				</div>
 			
-		</div>
+			</div>
 		
 		<!-- Photo selection -->
-		<div class="step">
+			<div class="step">
 		
 			<h3>2. Pick your photos</h3>
+			
+				<div class="group">
 		
 		<form class="form-inline" action="/create_album/{{ p.number }}/{{ p.template }}/" method="post">
 		{% csrf_token %}
@@ -94,27 +96,38 @@
 		
 		<input type="submit" value="Enter" />
 		</form>
+				</div>
 		
-		</div>
+			</div>
 		
 		<!-- Preview window -->
-		<div class="step">
-		
+		<div class="preview_window">
+			
 			{% block template %}
 			{% endblock %}
-		
-			<p>Page number: {{ p.number }}</p>
+			
+			<div class="nav_buttons">
 			
 			{% if p.number != 1 %}
-				<a href="/create_album/{{ p.number|add:"-1" }}/"><p>Go back</p></a>
+				<a class="btn pull-left" href="/create_album/{{ p.number|add:"-1" }}/">Back</a>
 			{% endif %}
-		
+			
+			{% if next_page %}
+				<a class="btn pull-right" href="/create_album/{{ p.number|add:"1" }}/">Forward</a>
+			{% endif %}
+			
+			</div>
+				
 		</div>
+		
+		<div class="nav_buttons">
 			
-		<div class="step">
+			<a class="btn pull-left" href="/create_album/finish">Save and Finish</a>
 			
-			<a href="/create_album/{{ p.number|add:"1" }}/duo2"><h3>3. Add another page</h3></a>
-
+			<a class="btn pull-right" href="/create_album/{{ p.number|add:"1" }}/duo2">Add another page</a>
+			
+			
+		</div>
 	</div>
 
 {% endblock %}

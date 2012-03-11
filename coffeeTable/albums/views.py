@@ -96,6 +96,13 @@ def create_page (request, page_no, template):
     # Count images existing on page
     images_existing = p.images.count()
     
+    # Check if next page exists
+    pages_in_album = Album.number_of_pages(a)
+    if pages_in_album > p.number:
+        next_page = True
+    else:
+        next_page = False
+    
     if images_existing >= 1:
         i_list = Image.objects.filter(page=p)
     else:
@@ -107,11 +114,33 @@ def create_page (request, page_no, template):
     return render_to_response( 
         template_name, 
         {'p' : p, 'i_list' : i_list, 
-        'h' : images_existing, 'j' : images_allowed}, 
+        'next_page' : next_page, 'j' : images_allowed}, 
         context_instance=RequestContext(request)
     )
 
-
+def save_album (request):
+    
+    a = Album.objects.get(title="temp")
+    
+    # If title was submitted, check and save name
+    if request.POST:
+        
+        # TO-DO: Check that title is not empty
+        
+        a.title = request.POST.get('title')
+        a.save()
+        
+        return view_album(request, a)
+       
+    return render_to_response("save_album.html", context_instance=RequestContext(request))
+        
+        
+def view_album (request, a):
+    return index(request)
+    
+    
+        
+    
 
 
 

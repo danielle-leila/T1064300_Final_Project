@@ -10,6 +10,7 @@ class Album (models.Model):
     # description = models.TextField(blank = True)
     date_created = models.DateTimeField(auto_now_add = True)
     # userId = models.ForeignKey(User)
+    thumbnail = models.OneToOneField('Image', blank=True)
     
     def __unicode__(self):
         return self.title
@@ -17,7 +18,11 @@ class Album (models.Model):
     # Example function from tutorial
     def was_published_today(self):
         return self.stamp_created.date() == datetime.date.today()
-
+        
+    def number_of_pages (self):
+        pages = Page.objects.filter(album=self)
+        return pages.count()
+        
 
 class Image (models.Model):
     id = models.AutoField(primary_key = True)
@@ -63,4 +68,15 @@ class Page (models.Model):
             return (4)
         if self.template == "duoR5" or self.template == "duoL5":
             return (5)
+        
+            
+
+        
+        
+        
+        
+        
+        
+        
+        
         

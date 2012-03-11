@@ -57,13 +57,28 @@
 
 .step {
     padding: 10px;
-    background-color: #FFD700;
+    margin: 20px 0;
+    width: 100%;
     clear: both;
 }
 
 .group {
     padding: 10px;
     float: left;
+}
+
+.preview_window {
+    padding: 20px;
+    width: 800px;
+    height: 450px;
+    clear: both;
+    margin: auto;
+}
+
+.nav_buttons {
+    padding-top: 10px;
+    width: 100%;
+    clear: both;
 }
 
 
@@ -110,6 +125,12 @@
     height: 200px;
 }
 
+.img_no {
+    position: absolute;
+    padding: 10px;
+    color: #757575;
+}
+
 
 /** Footer **/
 
@@ -118,6 +139,7 @@
     color: #FFFFFF;
     text-shadow: 0px 2px 3px #f1cb00;
     padding: 25px;
+    margin-top: 30px;
     -moz-border-radius-topright: 30px;
     -moz-border-radius-topleft: 30px;
     border-top-left-radius: 30px;

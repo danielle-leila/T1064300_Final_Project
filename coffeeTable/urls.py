@@ -23,6 +23,8 @@ urlpatterns = patterns('',
     
     url(r'^create_album/$', initiate_album),
     
+    url(r'^create_album/finish/$', save_album),
+    
     url(r'^create_album/(?P<page_no>\d+)/$', get_template),
     
     url(r'^create_album/(?P<page_no>\d+)/(?P<template>.+)/$', create_page),

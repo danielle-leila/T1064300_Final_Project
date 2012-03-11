@@ -2,43 +2,54 @@
 {% load static %}
 {% block template %}
 	
-	<div>
-		
 		<div class="duo">
 			
 			<div class="mono">
-			
-			{% if i_list.1 %}
-				<img class="horiz_half" src="{{ i_list.1.uri }}" />
 				
-			{% else %}
-				<img class="horiz_half" src="{% get_static_prefix %}img/empty.png" />
-			
-			{% endif %}
-			
-			{% if i_list.2 %}
-				<img class="horiz_half" src="{{ i_list.2.uri }}" />
+				<div class="horiz_half">
 				
-			{% else %}
-				<img class="horiz_half" src="{% get_static_prefix %}img/empty.png" />
+					<h3 class="img_no">2</h3>
 			
-			{% endif %}
+					{% if i_list.1 %}
+						<img class="horiz_half" src="{{ i_list.1.uri }}" />
+				
+					{% else %}
+						<img class="horiz_half" src="{% get_static_prefix %}img/empty.png" />
+			
+					{% endif %}
+				
+				</div>
+			
+				<div class="horiz_half">
+					
+					<h3 class="img_no">3</h3>
+			
+					{% if i_list.2 %}
+						<img class="horiz_half" src="{{ i_list.2.uri }}" />
+				
+					{% else %}
+						<img class="horiz_half" src="{% get_static_prefix %}img/empty.png" />
+			
+					{% endif %}
+					
+				</div>
 			
 			</div>
 			
 			<div class="mono">
-			
-			{% if i_list.0 %}
-				<img class="mono" src="{{ i_list.0.uri }}" />
 				
-			{% else %}
-				<img class="mono" src="{% get_static_prefix %}img/empty.png" />
+				<h3 class="img_no">1</h3>
 			
-			{% endif %}
+				{% if i_list.0 %}
+					<img class="mono" src="{{ i_list.0.uri }}" />
+				
+				{% else %}
+					<img class="mono" src="{% get_static_prefix %}img/empty.png" />
+			
+				{% endif %}
 			
 			</div>
 			
 		</div>
 		
-	</div>
 {% endblock %}

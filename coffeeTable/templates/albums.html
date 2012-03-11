@@ -3,20 +3,20 @@
 {% block content %}
 	<div>
 
-		{% if album_list %}
-		    <ul>
-		    {% for album in album_list %}
-		        <li><a href="/albums/{{ album.id }}/">{{ album.title }}</a></li>
-					<li><a href="/albums/{{ album.id }}/">{{ album.description }}</a></li>
-		    {% endfor %}
-		    </ul>
-		{% else %}
-		    <p>No albums are available.</p>
-		{% endif %}
+		<h1>Your Albums</h1>
 		
-
-
-
+		{% if album_list %}
+			<ul>
+				{% for album in album_list %}
+					<li><a href="/albums/{{ album.id }}/">{{ album.title }}</a></li>
+					<li><a href="/albums/{{ album.id }}/">{{ album.description }}</a></li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>You haven't created any albums yet.</p>
+			<p>What are you waiting for?</p>
+			<a class="btn" href="/create_album/">Get Creating...</a>
+		{% endif %}
 
 	</div>
 {% endblock %}

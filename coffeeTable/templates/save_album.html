@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+	<div>
+		<h1>Save your album</h1>
+
+		<div class="step">
+	
+			<h3>1. Choose a name</h3>
+	
+			<form class="form-inline" action="/create_album/finish/" method="post">
+				{% csrf_token %}
+				<label for="title">Album name:</label>
+				<input type="text" class="input-large" name="title" id="title" value="eg. Summer Lovin'" /></br>	
+	
+				<input type="submit" value="Finish" />
+				
+			</form>
+			
+		</div>
+	
+	</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

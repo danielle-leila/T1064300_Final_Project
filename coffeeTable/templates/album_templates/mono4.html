@@ -2,9 +2,11 @@
 {% load static %}
 {% block template %}
 	
-	<div>
+	<div class="mono">
 		
-		<div class="mono">
+		<div class="one_quarter">
+			
+			<h3 class="img_no">1</h3>
 			
 			{% if i_list.0 %}
 				<img class="one_quarter" src="{{ i_list.0.uri }}" />
@@ -14,6 +16,12 @@
 			
 			{% endif %}
 			
+		</div>
+		
+		<div class="one_quarter">
+			
+			<h3 class="img_no">2</h3>
+			
 			{% if i_list.1 %}
 				<img class="one_quarter" src="{{ i_list.1.uri }}" />
 				
@@ -22,6 +30,12 @@
 			
 			{% endif %}
 			
+		</div>
+		
+		<div class="one_quarter">
+			
+			<h3 class="img_no">3</h3>
+			
 			{% if i_list.2 %}
 				<img class="one_quarter" src="{{ i_list.2.uri }}" />
 				
@@ -29,6 +43,12 @@
 				<img class="one_quarter" src="{% get_static_prefix %}img/empty.png" />
 			
 			{% endif %}
+			
+		</div>
+		
+		<div class="one_quarter">
+			
+			<h3 class="img_no">4</h3>
 			
 			{% if i_list.3 %}
 				<img class="one_quarter" src="{{ i_list.3.uri }}" />
@@ -41,4 +61,5 @@
 		</div>
 		
 	</div>
+	
 {% endblock %}
