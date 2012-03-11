@@ -1,0 +1,36 @@
+TO-DO LIST
+
+-----------------------------------------------------------------------------------------------------------
+
+Highest priority:
+
+- Album List (index page)
+- View Album
+- User login, logout, register 
+	Implement Django user authentication module
+	User can be a separate application ($ python manage.py startapp user)
+- Addition of AJAX to View Album
+- Facebook or OpenID login
+- Post album link to Facebook
+- Edit existing albums
+
+-----------------------------------------------------------------------------------------------------------
+
+Lower priority:
+
+- Prettify with CSS adjustments
+- Mandate that first page must be 'mono'
+- Implement more functionality with jquery (no jquery there yet)
+
+-----------------------------------------------------------------------------------------------------------
+
+Shooting for 5 credits:
+
+- Upload images from computer
+	Involves implementing PIL
+- Get images from Facebook or Flickr
+- Albums can be public or private
+
+
+
+
