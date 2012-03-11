@@ -21,6 +21,10 @@ urlpatterns = patterns('',
     # Home page >> welcome, create_album or albums
     url(u'^$', index),
     
+    url(r'^albums/(?P<album_id>\d+)/$', view_album),
+    
+    url(r'^albums/(?P<album_id>\d+)/(?P<page_no>\d+)/$', view_album),
+    
     url(r'^create_album/$', initiate_album),
     
     url(r'^create_album/finish/$', save_album),

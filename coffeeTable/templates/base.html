@@ -6,8 +6,10 @@
 	{% load static %}
 	<link rel="stylesheet" href="{% get_static_prefix %}css/coffeeTable.css" type="text/css" />
 	<link rel="stylesheet" href="{% get_static_prefix %}css/bootstrap.css" type="text/css" />
-	<link rel="stylesheet" href="{% get_static_prefix %}css/bootstrap-responsive.css" type="text/css" />
 	<link rel="stylesheet" href="{% get_static_prefix %}css/reset.css" type="text/css" />
+	<script type="text/javascript" src="{% get_static_prefix %}js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="{% get_static_prefix %}js/coffeeTable.js"></script>
 	<meta name="Keywords" content="photo album, coffee table, photo book" />
 </head>
 <body>
@@ -38,7 +40,7 @@
 				</div>
 			</div>
 			<ul class="nav-tabs">
-				<li><a href="/">Home</a></li>
+				<li><a href="/">Albums</a></li>
 				<li><a href="/create_album/">Create album</a></li>
 			</ul>
 		{% endblock %}

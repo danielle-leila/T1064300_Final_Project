@@ -6,10 +6,30 @@
 		<h1>Your Albums</h1>
 		
 		{% if album_list %}
-			<ul>
+			<ul class="thumbnails">
+				
+				{% if working_album %}
+					<li class="span3">
+						<div class="thumbnail">
+							<a href="/create_album/">
+								<img src="{% get_static_prefix %}img/empty.png" alt="Under Construction" />
+								<h5>Under Construction</h5>
+								<p>Continue editing...</p>
+							</a>
+						</div>
+					</li>
+				{% endif %}
+				
 				{% for album in album_list %}
-					<li><a href="/albums/{{ album.id }}/">{{ album.title }}</a></li>
-					<li><a href="/albums/{{ album.id }}/">{{ album.description }}</a></li>
+					<li class="span3">
+						<div class="thumbnail">
+							<a href="/albums/{{ album.id }}/">
+								<img src="{{ album.thumbnail.uri }}" alt="{{ album.title }}" />
+								<h5>{{ album.title }}</h5>
+								<p>{{ album.description }}</p>
+							</a>
+						</div>
+					</li>
 				{% endfor %}
 			</ul>
 		{% else %}
@@ -20,4 +40,3 @@
 
 	</div>
 {% endblock %}
-

@@ -11,8 +11,16 @@ def index (request):
         Authenticated user views a home page with his albums
             returns a list of album titles and thumbnails
     """
-    album_list = Album.objects.all().order_by('-date_created')
-    return render_to_response('albums.html', {'album_list': album_list})
+    album_list = Album.objects.all().order_by('-date_created').exclude(title="temp")
+    
+    # Check for a currently unsaved album
+    if Album.objects.filter(title="temp"):
+        working_album = True
+    else:
+        working_album = False
+        
+    return render_to_response('albums.html', {'album_list': album_list, 
+        'working_album': working_album})
     
 
 def initiate_album (request):
@@ -54,6 +62,13 @@ def get_template (request, page_no):
     a = Album.objects.get(title="temp")
     p = Page.objects.get(album=a, number=page_no)
     return create_page(request, p.number, p.template)
+    
+def album_has_next_page (a, p):
+    pages_in_album = Album.number_of_pages(a)
+    if pages_in_album > p.number:
+        return True
+    else:
+        return False
 
 # Output create a page template
 def create_page (request, page_no, template):
@@ -97,11 +112,7 @@ def create_page (request, page_no, template):
     images_existing = p.images.count()
     
     # Check if next page exists
-    pages_in_album = Album.number_of_pages(a)
-    if pages_in_album > p.number:
-        next_page = True
-    else:
-        next_page = False
+    next_page = album_has_next_page(a, p)
     
     if images_existing >= 1:
         i_list = Image.objects.filter(page=p)
@@ -110,11 +121,14 @@ def create_page (request, page_no, template):
     
     template_name = template + '.html'
     
+    print_view = False
+    
     # Render all details to the template
     return render_to_response( 
         template_name, 
         {'p' : p, 'i_list' : i_list, 
-        'next_page' : next_page, 'j' : images_allowed}, 
+        'next_page' : next_page, 'j' : images_allowed, 
+        'print_view' : print_view}, 
         context_instance=RequestContext(request)
     )
 
@@ -128,19 +142,43 @@ def save_album (request):
         # TO-DO: Check that title is not empty
         
         a.title = request.POST.get('title')
-        a.save()
+        
+        # Get first image of first page and assign as thumbnail
+        p_list = Page.objects.filter(album=a).order_by('number')
+        i_list = Image.objects.filter(page=p_list[0]).order_by('number')
+        
+        if len(i_list) < 1:
+            a.save()
+        else:
+            a.thumbnail = i_list[0]
+            a.save()
         
         return view_album(request, a)
        
     return render_to_response("save_album.html", context_instance=RequestContext(request))
         
         
-def view_album (request, a):
-    return index(request)
+def view_album (request, album_id, page_no="1"):
+    
+    a = Album.objects.get(id=album_id)
+    p = Page.objects.get(album=a, number=page_no)
+    
+    template_name = p.template + '.html'
+    
+    i_list = Image.objects.filter(page=p).order_by('number')
+    
+    # Check if next page exists
+    next_page = album_has_next_page(a, p)
+    
+    print_view = True
+    
+    return render_to_response( 
+        template_name, 
+        {'a' : a, 'p' : p, 'i_list' : i_list, 
+        'next_page' : next_page, 'print_view' : print_view}
+    )
     
     
-        
     
-
 
 

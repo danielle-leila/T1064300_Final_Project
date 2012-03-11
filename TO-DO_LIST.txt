@@ -13,6 +13,7 @@ Highest priority:
 - Facebook or OpenID login
 - Post album link to Facebook
 - Edit existing albums
+- Deploy on deployment server
 
 -----------------------------------------------------------------------------------------------------------
 

@@ -3,14 +3,15 @@
 
 {% block content %}
 	
-	
-	
-	
-	<div>
-		<h1>Create a page <span class="pull-right">Page {{ p.number }}.</span></h1>
+	<div>{{ print_view }}
+		<h1 class="edit_view">Create a page 
+			<span class="pull-right">Page {{ p.number }}.</span>
+		</h1>
+		
+		<h1 class="album_view">{{ a.title }}</h1>
 		
 			<!-- Template selection -->
-			<div class="step">
+			<div class="edit_view step">
 		
 			<h3>1. Choose a template</h3>
 				
@@ -68,7 +69,7 @@
 			</div>
 		
 		<!-- Photo selection -->
-			<div class="step">
+			<div class="edit_view step">
 		
 			<h3>2. Pick your photos</h3>
 			
@@ -106,7 +107,7 @@
 			{% block template %}
 			{% endblock %}
 			
-			<div class="nav_buttons">
+			<div class="edit_view nav_buttons">
 			
 			{% if p.number != 1 %}
 				<a class="btn pull-left" href="/create_album/{{ p.number|add:"-1" }}/">Back</a>
@@ -117,10 +118,22 @@
 			{% endif %}
 			
 			</div>
+			
+			<div class="nav_buttons">
+			
+			{% if p.number != 1 %}
+				<a class="btn pull-left" href="/albums/{{ a.id }}/{{ p.number|add:"-1" }}/">Back</a>
+			{% endif %}
+			
+			{% if next_page %}
+				<a class="btn pull-right" href="/albums/{{ a.id }}/{{ p.number|add:"1" }}/">Forward</a>
+			{% endif %}
+			
+			</div>
 				
 		</div>
 		
-		<div class="nav_buttons">
+		<div class="edit_view nav_buttons">
 			
 			<a class="btn pull-left" href="/create_album/finish">Save and Finish</a>
 			

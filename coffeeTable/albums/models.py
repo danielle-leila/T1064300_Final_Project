@@ -10,7 +10,7 @@ class Album (models.Model):
     # description = models.TextField(blank = True)
     date_created = models.DateTimeField(auto_now_add = True)
     # userId = models.ForeignKey(User)
-    thumbnail = models.OneToOneField('Image', blank=True)
+    thumbnail = models.OneToOneField('Image', null=True)
     
     def __unicode__(self):
         return self.title
