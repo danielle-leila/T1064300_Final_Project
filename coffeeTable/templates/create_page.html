@@ -4,6 +4,7 @@
 {% block content %}
 	
 	<div>{{ print_view }}
+		
 		<h1 class="edit_view">Create a page 
 			<span class="pull-right">Page {{ p.number }}.</span>
 		</h1>
@@ -79,15 +80,15 @@
 		{% csrf_token %}
 		<label for="image_url">Image URL:</label>
 		<input type="text" class="input-large" name="image_url" id="image_url" value="www.example.com/image.jpg" /></br>
-		{% if j == 2 %}
-			<input type="radio" name="image_number" id="image_number" value="1" CHECKED />1</br>
-			<input type="radio" name="image_number" id="image_number" value="2" />2</br>
-			{% if j == 3 %}
-				<input type="radio" name="image_number" id="image_number" value="3" />3</br>
-				{% if j == 4 %}
-					<input type="radio" name="image_number" id="image_number" value="4" />4</br>
-					{% if j == 5 %}
-						<input type="radio" name="image_number" id="image_number" value="5" />5</br>
+		{% if j >= 2 %}
+			<input type="radio" name="image_number" id="image_number" value="1" CHECKED />1
+			<input type="radio" name="image_number" id="image_number" value="2" />2
+			{% if j >= 3 %}
+				<input type="radio" name="image_number" id="image_number" value="3" />3
+				{% if j >= 4 %}
+					<input type="radio" name="image_number" id="image_number" value="4" />4
+					{% if j >= 5 %}
+						<input type="radio" name="image_number" id="image_number" value="5" />5
 					{% endif %}
 				{% endif %}
 			{% endif %}

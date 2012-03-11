@@ -175,7 +175,8 @@ def view_album (request, album_id, page_no="1"):
     return render_to_response( 
         template_name, 
         {'a' : a, 'p' : p, 'i_list' : i_list, 
-        'next_page' : next_page, 'print_view' : print_view}
+        'next_page' : next_page, 'print_view' : print_view},
+        context_instance=RequestContext(request)
     )
     
     
