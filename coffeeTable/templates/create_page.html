@@ -3,7 +3,7 @@
 
 {% block content %}
 	
-	<div>{{ print_view }}
+	<div>{{ print_view }} 
 		
 		<h1 class="edit_view">Create a page 
 			<span class="pull-right">Page {{ p.number }}.</span>
@@ -120,7 +120,7 @@
 			
 			</div>
 			
-			<div class="nav_buttons">
+			<div class="print_view nav_buttons">
 			
 			{% if p.number != 1 %}
 				<a class="btn pull-left" href="/albums/{{ a.id }}/{{ p.number|add:"-1" }}/">Back</a>

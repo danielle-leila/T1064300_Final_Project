@@ -4,8 +4,8 @@ TO-DO LIST
 
 Highest priority:
 
-- Album List (index page)
-- View Album
++ Album List (index page)
++ View Album
 - User login, logout, register 
 	Implement Django user authentication module
 	User can be a separate application ($ python manage.py startapp user)
