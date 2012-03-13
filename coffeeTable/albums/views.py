@@ -229,11 +229,14 @@ def view_album (request, album_id, page_no="1"):
     next_page = album_has_next_page(a, p)
     
     print_view = True
+
+    # render dynamic request url for facebook like button
+    album_url = 'http://group021.webcourse.niksula.hut.fi/albums/' + album_id + '/'
     
     return render_to_response( 
         template_name, 
         {'a' : a, 'p' : p, 'i_list' : i_list, 
-        'next_page' : next_page, 'print_view' : print_view},
+        'next_page' : next_page, 'print_view' : print_view, 'album_url' : album_url},
         context_instance=RequestContext(request)
     )
     
