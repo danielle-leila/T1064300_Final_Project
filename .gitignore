@@ -1,0 +1,9 @@
+.DS_Store
+__init__.pyc
+manage.pyc
+settings.pyc
+urls.pyc
+views.pyc
+models.pyc
+tests.pyc
+admin.pyc
