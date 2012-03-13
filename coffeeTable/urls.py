@@ -32,7 +32,7 @@ urlpatterns = patterns('',
     url(r'^create_album/(?P<page_no>\d+)/$', get_template),
     
     url(r'^create_album/(?P<page_no>\d+)/(?P<template>.+)/$', create_page),
-    
- 
-    
+
+    url(r'^login_django/$', login_django),
+    url(r'^signup/$', sign_up),
 )

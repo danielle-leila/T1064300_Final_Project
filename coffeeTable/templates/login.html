@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+Login test
+{% if is_auth %}
+You are logged in.
+    {% else %}
+    To log in follow these links <br/>
+      <a href="../openid/login">Openid login </a>
+    <a href="../login2">Django login</a>
+    <a href="../signup">Sign up</a>
+    
+
+{% endif %}
+
+
+
+
+ {% endblock %}

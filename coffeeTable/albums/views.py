@@ -1,3 +1,8 @@
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.views import logout_then_login
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
@@ -11,6 +16,13 @@ def index (request):
         Authenticated user views a home page with his albums
             returns a list of album titles and thumbnails
     """
+
+
+    if not request.user.is_authenticated():
+        #return render_to_response('login.html',{'is_auth':False})
+        #return render_to_response('welcome.html',{'is_auth':False})
+        return HttpResponseRedirect(reverse(login_django))#show Django login with other options
+    
     album_list = Album.objects.all().order_by('-date_created').exclude(title="temp")
     
     # Check for a currently unsaved album
@@ -131,6 +143,52 @@ def create_page (request, page_no, template):
         'print_view' : print_view}, 
         context_instance=RequestContext(request)
     )
+
+
+
+
+
+@login_required
+def require_authentication(request):
+    return HttpResponse('This page requires authentication')
+
+
+def sign_up(request):
+    #user sent a form with data
+    if request.method == 'POST':
+        form = UserCreationForm(data = request.POST)
+        if form.is_valid():
+            form.save()
+            user = authenticate(username=form.cleaned_data['username'],
+					password=form.cleaned_data['password1'])
+            #user.save()
+            login(request, user)
+            return HttpResponseRedirect(reverse("index"))#go to the main page
+    #user visited the page first time
+    form = UserCreationForm()
+    return render_to_response('registration.html',{'form':form},context_instance=RequestContext(request))
+
+
+@login_required
+def logout(request, **kwargs):
+	return logout_then_login(request)
+
+#log in with a django account
+def login_django(request):
+    user = None
+    #user sent a form with data
+    if request.method == 'POST':
+        authForm = AuthenticationForm(data=request.POST)
+        if authForm.is_valid():
+            user = authenticate(username=authForm.cleaned_data['username'],
+					password=authForm.cleaned_data['password'])
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('index'))#go to the main page
+    #user visited the page first time
+    return render_to_response("welcome.html",{'form':AuthenticationForm(),'is_auth':False},context_instance=RequestContext(request))
+
 
 def save_album (request):
     

@@ -109,6 +109,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    
 )
 
 ROOT_URLCONF = 'coffeeTable.urls'
@@ -120,6 +121,8 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
     os.path.join(os.path.dirname(__file__), 'templates/album_templates').replace('\\','/'),
 )
+
+
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -133,6 +136,10 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'albums',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 # A sample logging configuration. The only tangible logging

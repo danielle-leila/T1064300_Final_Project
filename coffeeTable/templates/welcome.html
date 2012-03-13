@@ -15,7 +15,20 @@
   						<p>to our easy-peasy online photo album generator. Put your feet up, relax, and let us do the rest.</p>
 					</div>
 				</div>
+            <div>
+
+            </div>
 				<div class="span6">
+                       <form action='' method='post'>
+                              <label for="username">User name:</label>
+                                <input type="text" name="username" value="" id="username">
+                                <label for="password">Password:</label>
+                                <input type="password" name="password" value="" id="password">
+                                 {% csrf_token %}
+                                <input type="submit" value="login" />
+                                            
+                            <input type="hidden" name="next" value="/" />
+                            </form>
 					<form class="well form-inline">
 						<legend>Already a member?</legend>
 					  <input type="text" class="input-small" placeholder="Username">
