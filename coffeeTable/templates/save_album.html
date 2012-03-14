@@ -6,12 +6,16 @@
 	<div>
 		<h1>Save your album</h1>
 		
+		{% if tried_to_edit %}
+		
 		<div class="tried_to_edit">
 			
 			<p>Looks like you're still editing another album. </p>
 			<p>Save and finish that one before editing another. </p>
 			
 		</div>
+		
+		{% endif %}
 
 		<div class="step">
 	
@@ -19,7 +23,7 @@
 			<form class="form-inline" action="/create_album/finish/" method="post">
 				{% csrf_token %}
 				<label for="title">Album name:</label>
-				{% if a.temp_title != NULL %}
+				{% if a.temp_title|length > 0 %}
 				<input type="text" class="input-large" name="title" id="title" value="{{ a.temp_title }}" /></br>	
 				{% else %}
 				<input type="text" class="input-large" name="title" id="title" value="eg. Summer Lovin'" /></br>	

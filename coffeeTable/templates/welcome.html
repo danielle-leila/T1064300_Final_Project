@@ -19,7 +19,7 @@
 
             </div>
 				<div class="span6">
-                       <form action='' method='post'>
+                      <!-- <form action='' method='post'>
                               <label for="username">User name:</label>
                                 <input type="text" name="username" value="" id="username">
                                 <label for="password">Password:</label>
@@ -29,11 +29,13 @@
                                             
                             <input type="hidden" name="next" value="/" />
                             </form>
-					<form class="well form-inline">
+							-->
+					<form class="well form-inline" action="" method="post">
 						<legend>Already a member?</legend>
-					  <input type="text" class="input-small" placeholder="Username">
-					  <input type="password" class="input-small" placeholder="Password">
-					  <button type="submit" class="btn">Sign in</button>
+					  <input type="text" class="input-small" name="username" value="" id="username" placeholder="Username">
+					  <input type="password" class="input-small" name="password" value="" id="password" placeholder="Password">
+					{% csrf_token %}
+					  <button type="submit" class="btn" value="login" >Sign in</button>
 					<!-- Needs a correct link to OpenID login -->
 						<a href="login.html">
 							<img class="openid-btn" src="{% get_static_prefix %}img/img_trans.png" alt="OpenID" />

@@ -11,7 +11,7 @@ Highest priority:
 	User can be a separate application ($ python manage.py startapp user)
 - Addition of AJAX to View Album
 - Facebook or OpenID login
-- Post album link to Facebook
++ Post album link to Facebook
 - Edit existing albums
 - Deploy on deployment server
 

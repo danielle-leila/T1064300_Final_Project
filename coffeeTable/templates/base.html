@@ -11,18 +11,16 @@
 	<script type="text/javascript" src="{% get_static_prefix %}js/jquery.min.js"></script>
 	<script type="text/javascript" src="{% get_static_prefix %}js/coffeeTable.js"></script>
 	<meta name="Keywords" content="photo album, coffee table, photo book" />
+	
+	<script type="text/javascript">
+		var page_no={{ p.number }};
+		var tried_to_edit={{ tried_to_edit|lower }};
+	</script>
+			
 </head>
 <body>
 	
-	<script type="text/javascript">
-	function initiate_base(){
-		alert("is this coming first or later?");
-		var check_print_view={{ print_view|lower }};
-		var page_no={{ p.number }};
-		var tried_to_edit={{ tried_to_edit|lower }};
-		return true;
-	}
-			</script>
+	
 	
 	<!-- Main container -->
 	<div class="container">

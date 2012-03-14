@@ -1,6 +1,10 @@
 
 {% load static %}
 
+.hidden {
+    display: none;
+}
+
 /** Header **/
 
 .header {

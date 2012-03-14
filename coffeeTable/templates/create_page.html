@@ -3,13 +3,19 @@
 
 {% block content %}
 	
-	<div>{{ print_view }}
+	<div>
+		
+		<p id="page_no" class="hidden">{{p.number}}</p>
 		
 		<h1 class="edit_view">Create a page 
 			<span class="pull-right">Page {{ p.number }}.</span>
 		</h1>
 		
-		<h1 class="print_view">{{ a.title }}</h1>
+		{% if print_view %}
+		
+			<h1 id="print_view">{{ a.title }}</h1>
+		
+		{% endif %}
 		
 			<!-- Template selection -->
 			<div class="edit_view step">
@@ -105,7 +111,7 @@
 		<!-- Preview window -->
 		<div class="preview_window">
 			
-			<div class="fb-like" data-href="{{ album_url }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div>
+			<div class="fb-like print_view" data-href="{{ album_url }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div>
 
 			{% block template %}
 			{% endblock %}

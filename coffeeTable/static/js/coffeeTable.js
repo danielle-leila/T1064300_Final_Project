@@ -2,24 +2,18 @@
 
 $(document).ready(function() {
 
-alert("we are here!");
-initiate_base();
-alert("print some more.");
-
-alert("print sth you asshole."+check_print_view);
-    if (check_print_view){
-            alert("and here..");
+    // Workaround, because checking Django variables wouldn't work
+    if ($("#print_view").length > 0){
         $(".edit_view").hide();
         $(".img_no").hide();
         $(".empty").hide();
         $(".print_view").show();   
     }else{ 
-        alert("in th else");
         $(".print_view").hide();
     }
         
-        
-    if (page_no == 1)
+    // Another workaround. Silly javascript didn't want to play nice.
+    if ($("#page_no").text() == 1)
         {
         $(".inside_page").hide();
         }

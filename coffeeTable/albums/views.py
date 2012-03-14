@@ -10,7 +10,6 @@ from django.template.context import RequestContext
 from albums.models import *
 
 
-
 def index (request):
     """ New user is directed to Welcome page
         Authenticated user views a home page with his albums
@@ -21,10 +20,10 @@ def index (request):
         #return render_to_response('welcome.html',{'is_auth':False})
         return HttpResponseRedirect(reverse(login_django))#show Django login with other options
 
-    album_list = Album.objects.all().order_by('-date_created')
+    album_list = Album.objects.filter(user=request.user).order_by('-date_created')
     
     # Check for a currently unsaved album
-    if Album.objects.filter(title="temp"):
+    if Album.objects.filter(title="temp", user=request.user):
         working_album = True
     else:
         working_album = False
@@ -33,6 +32,7 @@ def index (request):
         'working_album': working_album})
     
 
+@login_required(login_url='/')
 def initiate_album (request, album_id=0):
     
     if album_id != 0 or request.POST:
@@ -40,16 +40,16 @@ def initiate_album (request, album_id=0):
     
     # If temp doesn't exist, create temp album and first page
     try:
-        Album.objects.get(title="temp")
+        Album.objects.get(title="temp", user=request.user)
     except Album.DoesNotExist:
-        a = Album(title="temp")
+        a = Album(title="temp", user=request.user)
         a.save()
     
         p = initiate_page(request, a)
         
     # Otherwise, get album and page objects
     else:
-        a = Album.objects.get(title="temp")
+        a = Album.objects.get(title="temp", user=request.user)
         no_of_pages = Album.number_of_pages(a)
         p = Page.objects.get(album=a, number=no_of_pages)
         
@@ -73,7 +73,7 @@ def initiate_image (request, p):
 
 # Template is not passed from back or forward buttons, get template:
 def get_template (request, page_no):
-    a = Album.objects.get(title="temp")
+    a = Album.objects.get(title="temp", user=request.user)
     p = Page.objects.get(album=a, number=page_no)
     return create_page(request, p.number, p.template)
     
@@ -85,10 +85,11 @@ def album_has_next_page (a, p):
         return False
 
 # Output create a page template
+@login_required(login_url='/')
 def create_page (request, page_no, template):
     """ Authenticated user creates an album (working album = temp)
     """
-    a = Album.objects.get(title="temp")
+    a = Album.objects.get(title="temp", user=request.user)
     
     # Make sure current page exists
     try:
@@ -147,7 +148,7 @@ def create_page (request, page_no, template):
     )
 
 
-@login_required
+@login_required(login_url='/')
 def require_authentication(request):
     return HttpResponse('This page requires authentication')
 
@@ -168,7 +169,7 @@ def sign_up(request):
     return render_to_response('registration.html',{'form':form},context_instance=RequestContext(request))
 
 
-@login_required
+@login_required(login_url='/')
 def logout(request, **kwargs):
 	return logout_then_login(request)
 
@@ -191,7 +192,7 @@ def login_django(request):
 
 def save_album (request, album_id=0, tried_to_edit=False):
     
-    a = Album.objects.get(title="temp")
+    a = Album.objects.get(title="temp", user=request.user)
     
     # If title was submitted, check and save name
     if request.POST:
@@ -199,6 +200,8 @@ def save_album (request, album_id=0, tried_to_edit=False):
         # TO-DO: Check that title is not empty
         
         a.title = request.POST.get('title')
+        
+        a.temp_title = ""
         
         # Get first image of first page and assign as thumbnail
         p_list = Page.objects.filter(album=a).order_by('number')
@@ -211,7 +214,7 @@ def save_album (request, album_id=0, tried_to_edit=False):
             a.save()
         
         if request.POST.get('tried_to_edit'):
-            return initiate_album(request, album_id)
+            return edit_album(request, album_id)
         else:
             return index(request)
        
@@ -223,7 +226,7 @@ def save_album (request, album_id=0, tried_to_edit=False):
 
 def edit_album (request, album_id):
     
-    a = Album.objects.get(id=album_id)
+    a = Album.objects.get(id=album_id, user=request.user)
     
     # Can't have two working albums, save existing temp album
     if Album.objects.filter(title="temp"):
@@ -236,10 +239,11 @@ def edit_album (request, album_id):
     
     return initiate_album(request, album_id)
     
-        
+    
+@login_required(login_url='/')
 def view_album (request, album_id, page_no="1"):
     
-    a = Album.objects.get(id=album_id)
+    a = Album.objects.get(id=album_id, user=request.user)
     p = Page.objects.get(album=a, number=page_no)
     
     template_name = p.template + '.html'
