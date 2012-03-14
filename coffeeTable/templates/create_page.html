@@ -3,13 +3,13 @@
 
 {% block content %}
 	
-	<div>{{ print_view }} 
+	<div>{{ print_view }}
 		
 		<h1 class="edit_view">Create a page 
 			<span class="pull-right">Page {{ p.number }}.</span>
 		</h1>
 		
-		<h1 class="album_view">{{ a.title }}</h1>
+		<h1 class="print_view">{{ a.title }}</h1>
 		
 			<!-- Template selection -->
 			<div class="edit_view step">
@@ -38,7 +38,7 @@
 			
 				</div>
 			
-				<div class="group">
+				<div class="group inside_page">
 				<p>Inside page:</p>
 			
 			<a href="/create_album/{{ p.number }}/duo2/">

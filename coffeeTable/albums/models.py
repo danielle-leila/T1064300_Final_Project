@@ -2,11 +2,10 @@ from django.db import models
 import datetime
 
 
-# Create your models here.
-
 class Album (models.Model):
     id = models.AutoField(primary_key = True)
     title = models.CharField(max_length = 50)
+    temp_title = models.CharField(max_length = 50, null=True)
     # description = models.TextField(blank = True)
     date_created = models.DateTimeField(auto_now_add = True)
     # userId = models.ForeignKey(User)
@@ -15,10 +14,7 @@ class Album (models.Model):
     def __unicode__(self):
         return self.title
             
-    # Example function from tutorial
-    def was_published_today(self):
-        return self.stamp_created.date() == datetime.date.today()
-        
+    # Returns the number of pages in an album
     def number_of_pages (self):
         pages = Page.objects.filter(album=self)
         return pages.count()
@@ -57,6 +53,7 @@ class Page (models.Model):
     def __unicode__(self):
         return self.template
         
+    # Returns the number of images allowed in the current page template
     def get_images_allowed (self):
         if self.template == "monoB1" or self.template == "monoS1" or self.template == "duo1":
             return (1)

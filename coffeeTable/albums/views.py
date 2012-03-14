@@ -16,6 +16,7 @@ def index (request):
         Authenticated user views a home page with his albums
             returns a list of album titles and thumbnails
     """
+<<<<<<< HEAD
 
 
     if not request.user.is_authenticated():
@@ -24,6 +25,9 @@ def index (request):
         return HttpResponseRedirect(reverse(login_django))#show Django login with other options
     
     album_list = Album.objects.all().order_by('-date_created').exclude(title="temp")
+=======
+    album_list = Album.objects.all().order_by('-date_created')
+>>>>>>> Tried to implement edit album functionality
     
     # Check for a currently unsaved album
     if Album.objects.filter(title="temp"):
@@ -35,7 +39,10 @@ def index (request):
         'working_album': working_album})
     
 
-def initiate_album (request):
+def initiate_album (request, album_id=0):
+    
+    if album_id != 0 or request.POST:
+        return edit_album(request, album_id)
     
     # If temp doesn't exist, create temp album and first page
     try:
@@ -49,10 +56,11 @@ def initiate_album (request):
     # Otherwise, get album and page objects
     else:
         a = Album.objects.get(title="temp")
-        no_of_pages = Page.objects.filter(album=a).count()
+        no_of_pages = Album.number_of_pages(a)
         p = Page.objects.get(album=a, number=no_of_pages)
         
     return create_page(request, p.number, p.template)
+        
         
 def initiate_page (request, a, page_no="1", template="monoB1"):
 
@@ -127,7 +135,7 @@ def create_page (request, page_no, template):
     next_page = album_has_next_page(a, p)
     
     if images_existing >= 1:
-        i_list = Image.objects.filter(page=p)
+        i_list = Image.objects.filter(page=p).order_by('number')
     else:
         i_list = {}
     
@@ -138,12 +146,13 @@ def create_page (request, page_no, template):
     # Render all details to the template
     return render_to_response( 
         template_name, 
-        {'p' : p, 'i_list' : i_list, 
+        {'a' : a, 'p' : p, 'i_list' : i_list, 
         'next_page' : next_page, 'j' : images_allowed, 
         'print_view' : print_view}, 
         context_instance=RequestContext(request)
     )
 
+<<<<<<< HEAD
 
 
 
@@ -191,6 +200,9 @@ def login_django(request):
 
 
 def save_album (request):
+=======
+def save_album (request, album_id=0, tried_to_edit=False):
+>>>>>>> Tried to implement edit album functionality
     
     a = Album.objects.get(title="temp")
     
@@ -211,10 +223,32 @@ def save_album (request):
             a.thumbnail = i_list[0]
             a.save()
         
-        return view_album(request, a)
+        if request.POST.get('tried_to_edit'):
+            return initiate_album(request, album_id)
+        else:
+            return index(request)
        
-    return render_to_response("save_album.html", context_instance=RequestContext(request))
-        
+    return render_to_response("save_album.html", {'a' : a,
+        'tried_to_edit' : tried_to_edit}, 
+        context_instance=RequestContext(request))
+
+
+
+def edit_album (request, album_id):
+    
+    a = Album.objects.get(id=album_id)
+    
+    # Can't have two working albums, save existing temp album
+    if Album.objects.filter(title="temp"):
+        tried_to_edit = True
+        return save_album(request, album_id, tried_to_edit)
+    else:
+        a.temp_title = a.title
+        a.title = "temp"
+        a.save
+    
+    return initiate_album(request, album_id)
+    
         
 def view_album (request, album_id, page_no="1"):
     

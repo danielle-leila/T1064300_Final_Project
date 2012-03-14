@@ -8,14 +8,21 @@
 	<link rel="stylesheet" href="{% get_static_prefix %}css/bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="{% get_static_prefix %}css/reset.css" type="text/css" />
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{% get_static_prefix %}js/jquery.min.js"></script>
 	<script type="text/javascript" src="{% get_static_prefix %}js/coffeeTable.js"></script>
 	<meta name="Keywords" content="photo album, coffee table, photo book" />
 </head>
 <body>
 	
 	<script type="text/javascript">
+	function initiate_base(){
+		alert("is this coming first or later?");
 		var check_print_view={{ print_view|lower }};
-	</script>
+		var page_no={{ p.number }};
+		var tried_to_edit={{ tried_to_edit|lower }};
+		return true;
+	}
+			</script>
 	
 	<!-- Main container -->
 	<div class="container">
@@ -27,7 +34,9 @@
 					<div class="span12">
 						<div class="row">
 							<div class="span8">
-								<h1>CoffeeTable <em>*enlightened*</em></h1>
+								<a href="/">
+									<h1>CoffeeTable <em>*enlightened*</em></h1>
+								</a>
 							</div>
 							<div class="span4">
 								<h3 class="pull-right">

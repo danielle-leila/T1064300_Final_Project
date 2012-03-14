@@ -32,7 +32,15 @@ urlpatterns = patterns('',
     url(r'^create_album/(?P<page_no>\d+)/$', get_template),
     
     url(r'^create_album/(?P<page_no>\d+)/(?P<template>.+)/$', create_page),
+<<<<<<< HEAD
 
     url(r'^login_django/$', login_django),
     url(r'^signup/$', sign_up),
+=======
+    
+    url(r'^create_album/edit/(?P<album_id>\d+)/$', edit_album),
+    
+ 
+    
+>>>>>>> Tried to implement edit album functionality
 )

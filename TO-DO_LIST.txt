@@ -20,7 +20,7 @@ Highest priority:
 Lower priority:
 
 - Prettify with CSS adjustments
-- Mandate that first page must be 'mono'
++ Mandate that first page must be 'mono'
 - Implement more functionality with jquery (no jquery there yet)
 
 -----------------------------------------------------------------------------------------------------------

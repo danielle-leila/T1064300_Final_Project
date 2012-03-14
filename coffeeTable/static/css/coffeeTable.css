@@ -21,6 +21,10 @@
     padding: 25px;
 }
 
+.header a:hover {
+    text-decoration: none;
+}
+
 .header em {
   font-size: 70%;
 }
@@ -139,6 +143,12 @@
     position: absolute;
     padding: 10px;
     color: #757575;
+}
+
+/** Save Page **/
+
+.tried_to_edit {
+    color: red;
 }
 
 

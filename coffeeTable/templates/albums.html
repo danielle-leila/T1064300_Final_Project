@@ -8,19 +8,19 @@
 		{% if album_list %}
 			<ul class="thumbnails">
 				
-				{% if working_album %}
-					<li class="span3">
-						<div class="thumbnail">
-							<a href="/create_album/">
-								<img src="{% get_static_prefix %}img/empty.png" alt="Under Construction" />
-								<h5>Under Construction</h5>
-								<p>Continue editing...</p>
-							</a>
-						</div>
-					</li>
-				{% endif %}
-				
 				{% for album in album_list %}
+				
+					{% if album.title = "temp" %}
+						<li class="span3">
+							<div class="thumbnail">
+								<a href="/create_album/">
+									<img src="{% get_static_prefix %}img/empty.png" alt="Under Construction" />
+									<h5>Under Construction</h5>
+									<p>Continue editing...</p>
+								</a>
+							</div>
+						</li>
+					{% else %}
 					<li class="span3">
 						<div class="thumbnail">
 							<a href="/albums/{{ album.id }}/">
@@ -28,8 +28,10 @@
 								<h5>{{ album.title }}</h5>
 								<p>{{ album.description }}</p>
 							</a>
+							<a class="btn" href="/create_album/edit/{{ album.id }}/">Edit Album</a>
 						</div>
 					</li>
+					{% endif %}
 				{% endfor %}
 			</ul>
 		{% else %}

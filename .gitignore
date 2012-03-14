@@ -1,1 +1,14 @@
+<<<<<<< HEAD
 .DS_Store__init__.pycmanage.pycsettings.pycurls.pycviews.pycmodels.pyctests.pycadmin.pyc/coffeeTable/.idea/.name/coffeeTable/.idea/T1064300_Final_Project.iml/coffeeTable/.idea/dataSources.ids/coffeeTable/.idea/dataSources.xml/coffeeTable/.idea/encodings.xml/coffeeTable/.idea/misc.xml/coffeeTable/.idea/modules.xml/coffeeTable/.idea/vcs.xml/coffeeTable/.idea/wo
+=======
+.DS_Store
+__init__.pyc
+manage.pyc
+settings.pyc
+urls.pyc
+views.pyc
+models.pyc
+tests.pyc
+admin.pyc
+coffeeTable.db
+>>>>>>> Tried to implement edit album functionality
