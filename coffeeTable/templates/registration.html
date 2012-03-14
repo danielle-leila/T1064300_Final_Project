@@ -15,10 +15,26 @@
       {% endif %}
     {% endif %}
 
-	<form action="" method="post">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<input type="submit" value="Create the account">
-	</form>
-
+ 
+<form action="" method="post">
+{% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.subject.errors }}
+        <label for="id_username">Username:</label>
+        {{ form.username }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.password1.errors }}
+        <label for="id_password1">Password:</label>
+        {{ form.password1 }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.password2.error_messages }}
+        <label for="id_password2">Password confirmation:</label>
+        {{ form.password2 }}
+    </div>
+ 
+    <p><input type="submit" value="Create the account" /></p>
+</form>
 {% endblock %}

@@ -148,9 +148,6 @@ def create_page (request, page_no, template):
     )
 
 
-@login_required(login_url='/')
-def require_authentication(request):
-    return HttpResponse('This page requires authentication')
 
 
 def sign_up(request):
@@ -163,15 +160,13 @@ def sign_up(request):
 					password=form.cleaned_data['password1'])
             #user.save()
             login(request, user)
-            return HttpResponseRedirect(reverse("index"))#go to the main page
+            return HttpResponseRedirect(reverse(index))#go to the main page
     #user visited the page first time
     form = UserCreationForm()
     return render_to_response('registration.html',{'form':form},context_instance=RequestContext(request))
 
 
-@login_required(login_url='/')
-def logout(request, **kwargs):
-	return logout_then_login(request)
+
 
 #log in with a django account
 def login_django(request):
@@ -185,7 +180,7 @@ def login_django(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('index'))#go to the main page
+                return HttpResponseRedirect(reverse(index))#go to the main page
     #user visited the page first time
     return render_to_response("welcome.html",{'form':AuthenticationForm(),'is_auth':False},context_instance=RequestContext(request))
 
@@ -240,7 +235,7 @@ def edit_album (request, album_id):
     return initiate_album(request, album_id)
     
     
-@login_required(login_url='/')
+@login_required(login_url='login_django')
 def view_album (request, album_id, page_no="1"):
     
     a = Album.objects.get(id=album_id, user=request.user)
