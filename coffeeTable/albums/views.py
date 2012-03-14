@@ -16,18 +16,12 @@ def index (request):
         Authenticated user views a home page with his albums
             returns a list of album titles and thumbnails
     """
-<<<<<<< HEAD
-
-
     if not request.user.is_authenticated():
         #return render_to_response('login.html',{'is_auth':False})
         #return render_to_response('welcome.html',{'is_auth':False})
         return HttpResponseRedirect(reverse(login_django))#show Django login with other options
-    
-    album_list = Album.objects.all().order_by('-date_created').exclude(title="temp")
-=======
+
     album_list = Album.objects.all().order_by('-date_created')
->>>>>>> Tried to implement edit album functionality
     
     # Check for a currently unsaved album
     if Album.objects.filter(title="temp"):
@@ -152,10 +146,6 @@ def create_page (request, page_no, template):
         context_instance=RequestContext(request)
     )
 
-<<<<<<< HEAD
-
-
-
 
 @login_required
 def require_authentication(request):
@@ -199,10 +189,7 @@ def login_django(request):
     return render_to_response("welcome.html",{'form':AuthenticationForm(),'is_auth':False},context_instance=RequestContext(request))
 
 
-def save_album (request):
-=======
 def save_album (request, album_id=0, tried_to_edit=False):
->>>>>>> Tried to implement edit album functionality
     
     a = Album.objects.get(title="temp")
     
